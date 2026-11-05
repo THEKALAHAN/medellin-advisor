@@ -1,0 +1,323 @@
+@import "tailwindcss";
+
+/*
+ * Medellin Advisors — sistema visual.
+ * Tema claro permanente. Paleta institucional:
+ *   Marfil #F5F0E8 · Blanco cálido #FCFAF6 · Verde profundo #172D25
+ *   Champagne #C6A36A · Carbón #292823
+ * Derivados (solo para garantizar contraste AA):
+ *   champagne-deep #7A5C2E: texto de acento sobre fondos claros (champagne puro no alcanza 4.5:1).
+ *   muted #5C584E: texto secundario sobre marfil/blanco cálido.
+ */
+@theme {
+  --color-ivory: #f5f0e8;
+  --color-surface: #fcfaf6;
+  --color-forest: #172d25;
+  --color-forest-soft: #23423a;
+  --color-champagne: #c6a36a;
+  --color-champagne-deep: #7a5c2e;
+  --color-charcoal: #292823;
+  --color-muted: #5c584e;
+  --color-line: #e3d9c8;
+
+  --font-serif: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  --font-sans: var(--font-manrope), "Manrope", system-ui, sans-serif;
+
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+    background-color: var(--color-ivory);
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    background-color: var(--color-ivory);
+    color: var(--color-charcoal);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.6;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-champagne-deep);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background-color: var(--color-champagne);
+    color: var(--color-forest);
+  }
+
+  /* El marcador nativo de <details>/<summary> se sustituye por iconos propios. */
+  summary {
+    list-style: none;
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+}
+
+@layer components {
+  /* Tipografía fluida */
+  .text-display {
+    font-size: clamp(2.35rem, 1.4rem + 4.6vw, 5rem);
+    line-height: 1.02;
+  }
+  .text-title {
+    font-size: clamp(2rem, 1.35rem + 2.8vw, 3.5rem);
+    line-height: 1.08;
+  }
+  .text-lead {
+    font-size: clamp(1.02rem, 0.95rem + 0.35vw, 1.2rem);
+    line-height: 1.65;
+  }
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+  }
+
+  /* Contenedor editorial con márgenes fluidos (16px en 320px, hasta 64px). */
+  .container-editorial {
+    width: 100%;
+    max-width: 82rem;
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 0.4rem + 3vw, 4rem);
+  }
+
+  /* Botones: área táctil mínima de 44px. */
+  .btn {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 0.8rem 1.6rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    border-radius: 0;
+    transition:
+      background-color 300ms var(--ease-soft),
+      color 300ms var(--ease-soft),
+      border-color 300ms var(--ease-soft);
+  }
+  .btn-primary {
+    background-color: var(--color-forest);
+    color: var(--color-ivory);
+  }
+  .btn-primary:hover {
+    background-color: var(--color-forest-soft);
+  }
+  .btn-gold {
+    background-color: var(--color-champagne);
+    color: var(--color-forest);
+  }
+  .btn-gold:hover {
+    background-color: #d4b47f;
+  }
+  .btn-outline {
+    border: 1px solid currentColor;
+  }
+  .btn-outline:hover {
+    background-color: var(--color-forest);
+    border-color: var(--color-forest);
+    color: var(--color-ivory);
+  }
+
+  /* Campos de formulario */
+  .field-label {
+    display: block;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+  .field-control {
+    width: 100%;
+    /* Un <select> mide por defecto lo que su opción más larga; en Chromium/WebKit puede
+       impedir que la columna se contraiga. Se permite contraer dentro de su contenedor. */
+    min-width: 0;
+    max-width: 100%;
+    text-overflow: ellipsis;
+    min-height: 2.75rem;
+    background-color: transparent;
+    color: var(--color-charcoal);
+    font-size: 1rem;
+  }
+  .field-control:focus-visible {
+    outline-offset: 2px;
+  }
+  select.field-control {
+    appearance: none;
+    padding-right: 2rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%237A5C2E' stroke-width='1.5' viewBox='0 0 12 12'%3E%3Cpath d='M2 4.5 6 8.5l4-4'/%3E%3C/svg%3E");
+    background-position: right 0.25rem center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+  }
+
+  /* Línea dorada decorativa */
+  .rule-gold {
+    display: block;
+    width: 3rem;
+    height: 1px;
+    background-color: var(--color-champagne);
+  }
+
+  /* Entrada suave del contenido (respeta prefers-reduced-motion arriba). */
+  .reveal {
+    animation: reveal 900ms var(--ease-soft) both;
+  }
+  .reveal-delay {
+    animation-delay: 150ms;
+  }
+}
+
+/*
+ * Mapa (Leaflet). Los estilos base llegan con leaflet/dist/leaflet.css, importado solo en el
+ * componente de cliente del mapa. Aquí se adapta a la identidad visual.
+ */
+.ma-map {
+  background-color: #e9e3d7;
+  font-family: var(--font-sans);
+}
+/* Teselas en tono cálido y desaturado, coherente con la paleta (no altera la cartografía). */
+.ma-map .leaflet-tile-pane {
+  filter: grayscale(0.55) sepia(0.18) contrast(0.95) brightness(1.02);
+}
+/* Especificidad mayor que `.leaflet-touch .leaflet-bar a` (leaflet.css se carga después). */
+.leaflet-container.ma-map .leaflet-bar a {
+  width: 2.75rem;
+  height: 2.75rem;
+  line-height: 2.75rem;
+  color: var(--color-forest);
+  background-color: var(--color-surface);
+  font-size: 1.25rem;
+}
+.leaflet-container.ma-map .leaflet-bar a:hover {
+  background-color: var(--color-ivory);
+}
+.ma-map .leaflet-bar {
+  border: 1px solid var(--color-line);
+  border-radius: 0;
+  box-shadow: 0 8px 20px -12px rgba(23, 45, 37, 0.45);
+}
+.ma-map .leaflet-control-attribution {
+  font-size: 0.6875rem;
+  color: var(--color-charcoal);
+  background-color: rgba(252, 250, 246, 0.9);
+}
+.ma-map .leaflet-control-attribution a {
+  color: var(--color-champagne-deep);
+}
+
+/* Marcadores: píldora de precio anclada por su punta inferior. */
+.ma-marker {
+  background: none;
+  border: 0;
+}
+.ma-pin {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translate(-50%, calc(-100% - 7px));
+  display: inline-flex;
+  min-height: 1.9rem;
+  align-items: center;
+  padding: 0.25rem 0.65rem;
+  white-space: nowrap;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: var(--color-forest);
+  background-color: var(--color-surface);
+  border: 1px solid rgba(23, 45, 37, 0.25);
+  box-shadow: 0 6px 14px -6px rgba(23, 45, 37, 0.5);
+  transition:
+    background-color 200ms var(--ease-soft),
+    color 200ms var(--ease-soft),
+    transform 200ms var(--ease-soft);
+  cursor: pointer;
+}
+.ma-pin::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -7px;
+  width: 12px;
+  height: 12px;
+  background: inherit;
+  border-right: inherit;
+  border-bottom: inherit;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.ma-pin--group {
+  color: var(--color-champagne-deep);
+}
+.ma-pin--highlight {
+  background-color: var(--color-champagne);
+  color: var(--color-forest);
+  border-color: var(--color-champagne);
+  transform: translate(-50%, calc(-100% - 7px)) scale(1.06);
+}
+.ma-pin--selected {
+  background-color: var(--color-forest);
+  color: var(--color-ivory);
+  border-color: var(--color-forest);
+  transform: translate(-50%, calc(-100% - 7px)) scale(1.1);
+}
+.leaflet-marker-icon:focus-visible .ma-pin {
+  outline: 2px solid var(--color-champagne-deep);
+  outline-offset: 3px;
+}
+
+/*
+ * El contenido parte de una opacidad parcial (no de 0): sigue el mismo ascenso suave, pero el
+ * texto es legible desde el primer fotograma y cuenta como LCP (Chrome ignora los elementos con
+ * opacidad 0, lo que retrasaba la métrica en móvil). Solo anima opacity y transform (compositor).
+ * Con prefers-reduced-motion la animación se anula en la capa base.
+ */
+@keyframes reveal {
+  from {
+    opacity: 0.35;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
