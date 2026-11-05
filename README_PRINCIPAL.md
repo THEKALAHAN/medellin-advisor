@@ -3,6 +3,11 @@
 ## REALIZADO POR JUAN PABLO LEAL USUGA
 ## ESTUDIANTE DE DÉCIMO SEMESTRE DE INGENIERÍA DE SOFTWARE
 
+# Nota:
+Este README_PRINCIPAL.md fue realizado para contar mi experiencia durante la creación del proyecto de Medellín Advisors, decisiones que tomé, cómo utilicé herramientas de IA y retos que enfrenté durante el desarrollo.
+
+El README.md es el producto de un prompt de Claude, donde se están explicando más a profundidad el funcionamiento de la web, la instalación y despliegue del proyecto mismo. Por tanto, puede resultar ser más compleja su lectura, por este motivo recomiendo que primero se lea este primer documento.
+
 ## Sobre el proyecto
 
 Este proyecto tiene el objetivo de modernizar la experiencia de búsqueda de propiedades de **Medellin Advisors**, creando una plataforma inmobiliaria moderna, rápida y fácil de utilizar.
