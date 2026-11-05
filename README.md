@@ -2,7 +2,7 @@
 Leer primero el README_PRINCIPAL.md, ya que el documento actual fue realizado mediante un prompt para poder explicar detalles técnicos más profundamente, mientras el documento mencionado fue redactado personalmente, allí hablo de todo lo que implicó el desarrollo de este proyecto, decisiones que tomé, tecnologías que utilicé y del uso de herramientas de IA. Este puede ser leído una vez se tenga el contexto del otro documento.
 
 - [README principal — Historia, decisiones y desarrollo](./README_PRINCIPAL.md)
-- [README técnico — Instalación, configuración y funcionamiento](./README_TECNICO.md)
+- [README técnico — Instalación, configuración y funcionamiento](./README.md)
 
 # Medellin Advisors
 
