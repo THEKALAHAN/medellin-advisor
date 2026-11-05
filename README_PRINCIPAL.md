@@ -6,7 +6,10 @@
 # Nota:
 Este README_PRINCIPAL.md fue realizado para contar mi experiencia durante la creación del proyecto de Medellín Advisors, decisiones que tomé, cómo utilicé herramientas de IA y retos que enfrenté durante el desarrollo.
 
-El README.md es el producto de un prompt de Claude, donde se están explicando más a profundidad el funcionamiento de la web, la instalación y despliegue del proyecto mismo. Por tanto, puede resultar ser más compleja su lectura, por este motivo recomiendo que primero se lea este primer documento.
+El README.md es el producto de un prompt, que permitiera explicar más a profundidad el funcionamiento de la web, la instalación y despliegue del proyecto mismo. Por tanto, puede resultar ser más compleja su lectura, por este motivo recomiendo que primero se lea este primer documento.
+
+- [README principal — Historia, decisiones y desarrollo](./README_PRINCIPAL.md)
+- [README técnico — Instalación, configuración y funcionamiento](./README_TECNICO.md)
 
 ## Sobre el proyecto
 
